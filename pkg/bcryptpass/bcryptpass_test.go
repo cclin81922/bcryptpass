@@ -28,8 +28,16 @@ func TestEncryptThenVerify(t *testing.T) {
 	for _, tc := range testcases {
 		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
-			hashedPass := Encrypt(tc.pass)
-			same := Verify(hashedPass, tc.pass)
+			hashedPass, err := Encrypt(tc.pass)
+			if err != nil {
+				t.Fatalf("encryption error | %s", err)
+			}
+
+			same, err := Verify(hashedPass, tc.pass)
+			if err != nil {
+				t.Fatalf("verification error | %s", err)
+			}
+
 			if !same {
 				t.Fatal("hashed pass is not the same as pass")
 			}

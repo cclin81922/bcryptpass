@@ -14,14 +14,34 @@
 
 package bcryptpass
 
+import (
+	"golang.org/x/crypto/bcrypt"
+)
+
 // Encrypt ...
-func Encrypt(pass string) (hashedPass string) {
-	// TODO
+func Encrypt(plainPass string) (hashedPass string, e error) {
+
+	hash, err := bcrypt.GenerateFromPassword([]byte(plainPass), bcrypt.DefaultCost)
+
+	if err != nil {
+		e = err
+		return
+	}
+
+	hashedPass = string(hash)
 	return
 }
 
 // Verify ...
-func Verify(hashedPass, pass string) (same bool) {
-	// TODO
+func Verify(hashedPass, plainPass string) (same bool, e error) {
+
+	err := bcrypt.CompareHashAndPassword([]byte(hashedPass), []byte(plainPass))
+
+	if err != nil {
+		e = err
+		return
+	}
+
+	same = true
 	return
 }
