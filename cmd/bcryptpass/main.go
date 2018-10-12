@@ -14,6 +14,45 @@
 
 package main
 
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/cclin81922/bcryptpass/pkg/bcryptpass"
+)
+
 func main() {
-	// TODO
+	switch {
+	case len(os.Args) == 3 && os.Args[1] == "encrypt":
+		pass := os.Args[2]
+		hashedPass, err := bcryptpass.Encrypt(pass)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Print(hashedPass)
+
+	case len(os.Args) == 4 && os.Args[1] == "verify":
+		hashedPass := os.Args[2]
+		plainPass := os.Args[3]
+		same, err := bcryptpass.Verify(hashedPass, plainPass)
+
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		fmt.Print(same)
+
+	default:
+		usage := `` +
+			`Usage` + "\n" +
+			"\n" +
+			"\t" + `bcryptpass encrypt <plain-pass>` + "\n" +
+			"\t" + `bcryptpass verify <hashed-pass> <plain-pass>` + "\n" +
+			"\n"
+		fmt.Printf("%s", usage)
+		os.Exit(1)
+	}
 }

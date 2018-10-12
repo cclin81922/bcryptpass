@@ -25,8 +25,8 @@ bcryptpass verify <hashed-pass> <plain-pass>
 import "github.com/cclin81922/bcryptpass/pkg/bcryptpass"
 
 func demo(pass string) {
-    hashedPass := bcryptpass.Encrypt(pass)
-    same := bcryptpass.Verify(hashedPass, pass)
+    hashedPass, err := bcryptpass.Encrypt(pass)
+    same, err := bcryptpass.Verify(hashedPass, pass)
 }
 ```
 
