@@ -7,8 +7,15 @@ export PATH=$PATH:~/go/bin
 
 # Command Line Usage
 
+Encrypt a plain password
+
 ```
 bcryptpass encrypt <plain-pass>
+```
+
+Verify a plain password
+
+```
 bcryptpass verify <hashed-pass> <plain-pass>
 ```
 
