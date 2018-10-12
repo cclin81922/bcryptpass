@@ -10,13 +10,13 @@ export PATH=$PATH:~/go/bin
 Encrypt a plain password
 
 ```
-bcryptpass encrypt <plain-pass>
+bcryptpass encrypt '<plain-pass>'
 ```
 
 Verify a plain password
 
 ```
-bcryptpass verify <hashed-pass> <plain-pass>
+bcryptpass verify '<hashed-pass>' '<plain-pass>'
 ```
 
 # Package Usage
