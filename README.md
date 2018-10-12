@@ -5,7 +5,7 @@ go get -u github.com/cclin81922/bcryptpass/cmd/bcryptpass
 export PATH=$PATH:~/go/bin
 ```
 
-# Commmand Line Usage
+# Command Line Usage
 
 ```
 bcryptpass encrypt <plain-pass>
